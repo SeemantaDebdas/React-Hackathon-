@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --var-bg: #f8f9fb;
+  --var-text: #0b1628;
+  --var-border: #d7e2f4;
+
+  --var-primary: #3d5afe;
+
+  --var-sidebar-bg: #ffffff;
+  --var-header-bg: #ffffff;
+  --var-footer-bg: #ffffff;
+
+  --var-input-bg: #f0f4f8;
+
+  --var-msg-user-bg: #eaf2fa;
+  --var-msg-ai-bg: #edf1f8;
+}
+
+
+/* Map CSS vars to utility classes */
+.bg-var-bg { background-color: var(--var-bg); }
+.bg-var-sidebar-bg { background-color: var(--var-sidebar-bg); }
+.bg-var-header-bg { background-color: var(--var-header-bg); }
+.bg-var-footer-bg { background-color: var(--var-footer-bg); }
+.bg-var-input-bg { background-color: var(--var-input-bg); }
+.bg-var-msg-user-bg { background-color: var(--var-msg-user-bg); }
+.bg-var-msg-ai-bg { background-color: var(--var-msg-ai-bg); }
+
+.text-var-text { color: var(--var-text); }
+.border-var-border { border-color: var(--var-border); }
+.text-var-primary { color: var(--var-primary); }
+.bg-var-primary { background-color: var(--var-primary); }
