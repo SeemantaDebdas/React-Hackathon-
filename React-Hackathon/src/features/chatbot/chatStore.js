@@ -87,24 +87,50 @@ export const useChatStore = create((set, get) => ({
     handleIncomingMessage: (msg) => {
         const state = get();
 
-        // remove thinking bubble
+        // Remove the thinking bubble
         const base = state.messages.filter((m) => !m.thinking);
 
-        if (msg.type === "final") {
+        /* ------------------------------------------------
+       CASE 1: FIRST BOT MESSAGE OF A NEW CHAT
+       chat_id = actual ID from backend
+    --------------------------------------------------*/
+        if (state.currentChatId === 0 && msg.from === "bot" && msg.chat_id) {
+            console.log("🎉 New chat ID assigned:", msg.chat_id);
+
+            // update websocket connection to new chat_id
+            if (state.service) {
+                state.service.updateChatId(msg.chat_id);
+            }
+
+            // update sessions list (prepend new chat)
+            const newSession = {
+                chat_id: msg.chat_id,
+                preview: msg.text,
+                last_update: msg.timestamp,
+            };
+
             set({
-                messages: [
-                    ...base,
-                    {
-                        from: msg.from,
-                        text: msg.text,
-                        id: msg.id,
-                        chat_id: msg.chat_id,
-                        created_at: msg.timestamp,
-                        thinking: false,
-                    },
-                ],
+                currentChatId: msg.chat_id,
+                sessions: [newSession, ...state.sessions],
             });
         }
+
+        /* ------------------------------------------------
+       CASE 2: Normal message handling
+    --------------------------------------------------*/
+        set({
+            messages: [
+                ...base,
+                {
+                    from: msg.from,
+                    text: msg.text,
+                    id: msg.id,
+                    chat_id: msg.chat_id,
+                    created_at: msg.timestamp,
+                    thinking: false,
+                },
+            ],
+        });
     },
 
     sendMessage: (text) => {

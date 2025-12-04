@@ -22,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 import ChatPage from "../features/chatbot/ChatPage";
 import Dashboard from "../features/dashboard/Dashboard";
 import DocumentUploadPage from "../features/upload/DocumentUploadPage";
+import DataList from "../features/list/DataList";
 
 export default function Layout() {
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -68,17 +69,8 @@ export default function Layout() {
                 return <ChatPage />;
             case "documents":
                 return <DocumentUploadPage />;
-            case "analytics":
-                return (
-                    <div className='space-y-6'>
-                        <h2 className='text-2xl font-bold text-text-main'>
-                            Analytics
-                        </h2>
-                        <p className='text-text-secondary'>
-                            View your analytics and insights.
-                        </p>
-                    </div>
-                );
+            case "list":
+                return <DataList />;
             case "team":
                 return (
                     <div className='space-y-6'>
@@ -237,24 +229,6 @@ export default function Layout() {
                             </button>
                         ))}
                     </nav>
-
-                    {/* Sidebar Footer */}
-                    <div
-                        className={`p-4 border-t border-border/30 transition-all duration-300 ${
-                            sidebarOpen ? "opacity-100" : "opacity-0"
-                        }`}
-                    >
-                        {sidebarOpen && (
-                            <div className='p-4 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20'>
-                                <p className='text-xs font-semibold text-primary mb-1'>
-                                    Pro Plan
-                                </p>
-                                <p className='text-xs text-text-secondary'>
-                                    Unlimited access to all features
-                                </p>
-                            </div>
-                        )}
-                    </div>
                 </aside>
 
                 {/* MAIN CONTENT */}

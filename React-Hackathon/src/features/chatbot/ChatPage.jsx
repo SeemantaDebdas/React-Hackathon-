@@ -40,8 +40,19 @@ export default function ChatPage() {
     }, [userId]);
 
     useEffect(() => {
+        if (userId && currentChatId === null) {
+            console.log("No chat selected → auto starting new chat");
+            startNewChat();
+        }
+    }, [userId, currentChatId]);
+
+    useEffect(() => {
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
+
+    useEffect(() => {
+        console.log("Calling the chat page");
+    }, []);
 
     const handleSend = () => {
         if (!input.trim()) return;
@@ -156,12 +167,12 @@ export default function ChatPage() {
                 )}
 
                 {/* Chat List */}
-                <div className='flex flex-col gap-2 overflow-y-auto flex-1 relative z-10 pr-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent'>
+                <div className='flex flex-col gap-2 overflow-y-auto flex-1 relative z-10 pr-2 custom-scrollbar'>
                     {filteredSessions.map((session) => (
                         <div
                             key={session.chat_id}
                             onClick={() => handleChatClick(session.chat_id)}
-                            className={`flex items-center gap-3 p-3 rounded-xl text-sm transition-all duration-200 cursor-pointer group
+                            className={`flex items-center min-h-12 gap-3 p-3 rounded-xl text-sm transition-all duration-200 cursor-pointer group
                                 relative overflow-hidden
                                 ${
                                     currentChatId === session.chat_id
@@ -223,7 +234,7 @@ export default function ChatPage() {
                 </header>
 
                 {/* Messages */}
-                <div className='flex-1 overflow-y-auto p-8 flex flex-col gap-8 bg-app-bg'>
+                <div className='flex-1 overflow-y-auto p-8 flex flex-col gap-8 bg-app-bg custom-scrollbar'>
                     {messages.length === 0 && currentChatId !== null && (
                         <div className='flex-1 flex items-center justify-center'>
                             <div className='text-center max-w-md'>
