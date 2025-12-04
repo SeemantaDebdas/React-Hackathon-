@@ -15,6 +15,7 @@ import {
     Shield,
     Palette,
     Lock,
+    List,
 } from "lucide-react";
 
 import { useAuthStore } from "../features/auth/authStore";
@@ -37,9 +38,7 @@ export default function Layout() {
         { id: "dashboard", icon: LayoutDashboard, label: "Dashboard" },
         { id: "conversations", icon: MessageSquare, label: "Conversations" },
         { id: "documents", icon: FileText, label: "Documents" },
-        { id: "analytics", icon: BarChart3, label: "Analytics" },
-        { id: "team", icon: Users, label: "Team" },
-        { id: "settings", icon: Settings, label: "Settings" },
+        { id: "list", icon: List, label: "Data List" },
     ];
 
     const dropdownItems = [
@@ -71,28 +70,6 @@ export default function Layout() {
                 return <DocumentUploadPage />;
             case "list":
                 return <DataList />;
-            case "team":
-                return (
-                    <div className='space-y-6'>
-                        <h2 className='text-2xl font-bold text-text-main'>
-                            Team Management
-                        </h2>
-                        <p className='text-text-secondary'>
-                            Manage your team members.
-                        </p>
-                    </div>
-                );
-            case "settings":
-                return (
-                    <div className='space-y-6'>
-                        <h2 className='text-2xl font-bold text-text-main'>
-                            Settings
-                        </h2>
-                        <p className='text-text-secondary'>
-                            Configure your application settings.
-                        </p>
-                    </div>
-                );
             default:
                 return null;
         }
