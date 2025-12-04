@@ -1,33 +1,25 @@
 @import "tailwindcss";
 
-:root {
-  --var-bg: #f8f9fb;
-  --var-text: #0b1628;
-  --var-border: #d7e2f4;
+/* ---------------------------------------------------------
+   Tailwind v4 theme tokens
+--------------------------------------------------------- */
+@theme {
+    --color-primary: #d5ff40;
+    --color-primary-hover: #c6e03a;
 
-  --var-primary: #3d5afe;
+    --color-app-bg: #0d0d0d;
+    --color-surface-base: #1a1a1a;
+    --color-surface-hover: #2a2a2a;
 
-  --var-sidebar-bg: #ffffff;
-  --var-header-bg: #ffffff;
-  --var-footer-bg: #ffffff;
+    --color-border: #333333;
 
-  --var-input-bg: #f0f4f8;
-
-  --var-msg-user-bg: #eaf2fa;
-  --var-msg-ai-bg: #edf1f8;
+    --color-text-main: #f0f0f0;
+    --color-text-secondary: #888888;
+    --color-text-dark: #1a1a1a;
 }
 
-
-/* Map CSS vars to utility classes */
-.bg-var-bg { background-color: var(--var-bg); }
-.bg-var-sidebar-bg { background-color: var(--var-sidebar-bg); }
-.bg-var-header-bg { background-color: var(--var-header-bg); }
-.bg-var-footer-bg { background-color: var(--var-footer-bg); }
-.bg-var-input-bg { background-color: var(--var-input-bg); }
-.bg-var-msg-user-bg { background-color: var(--var-msg-user-bg); }
-.bg-var-msg-ai-bg { background-color: var(--var-msg-ai-bg); }
-
-.text-var-text { color: var(--var-text); }
-.border-var-border { border-color: var(--var-border); }
-.text-var-primary { color: var(--var-primary); }
-.bg-var-primary { background-color: var(--var-primary); }
+/* Optional */
+:root {
+    background: var(--color-app-bg);
+    color: var(--color-text-main);
+}
